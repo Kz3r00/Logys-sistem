@@ -1,0 +1,66 @@
+<?php
+include 'database.php';
+
+// Verificação simples de admin (em produção, use sessões!)
+if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST['email']) || $_POST['email'] != 'kayky') {
+    die("Acesso negado!");
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Painel Admin</title>
+    <style>
+        table { width: 80%; margin: 20px auto; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; }
+    </style>
+</head>
+<body>
+    <h1>Painel Administrativo 👨‍💼</h1>
+    
+    <h2>Usuários</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>E-mail</th>
+            <th>Último Acesso</th>
+            <th>Ação</th>
+        </tr>
+        <?php
+        $sql = "SELECT * FROM users";
+        $result = $conn->query($sql);
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>
+                <td>{$row['id']}</td>
+                <td>{$row['email']}</td>
+                <td>{$row['access_time']}</td>
+                <td>
+                    <a href='redirect.php?user_id={$row['id']}&page=DD.html'>DD.html</a> |
+                    <a href='redirect.php?user_id={$row['id']}&page=MM.html'>MM.html</a>
+                </td>
+            </tr>";
+        }
+        ?>
+    </table>
+
+    <h2>Ideias dos Usuários</h2>
+    <table>
+        <tr>
+            <th>Usuário</th>
+            <th>Ideia</th>
+            <th>Data</th>
+        </tr>
+        <?php
+        $sql = "SELECT * FROM ideas";
+        $result = $conn->query($sql);
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>
+                <td>{$row['user_email']}</td>
+                <td>{$row['idea']}</td>
+                <td>{$row['created_at']}</td>
+            </tr>";
+        }
+        ?>
+    </table>
+</body>
+</html>

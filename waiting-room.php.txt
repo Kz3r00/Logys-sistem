@@ -1,0 +1,21 @@
+<?php include 'database.php'; ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aguardando Aprovação</title>
+    <style>
+        body { font-family: Arial; text-align: center; margin-top: 50px; }
+        textarea { width: 80%; height: 100px; margin: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Você está na fila de espera! ⏳</h1>
+    <p>O administrador irá redirecionar você em breve.</p>
+
+    <h3>Deixe uma ideia para o site:</h3>
+    <form method="POST" action="save-idea.php">
+        <textarea name="idea" placeholder="Ex.: Adicionar um jogo de memória..."></textarea><br>
+        <button type="submit">Enviar Ideia</button>
+    </form>
+</body>
+</html>

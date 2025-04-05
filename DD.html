@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envelope de Mensagens Fofas</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f9c5d1;
+            transition: background-color 0.5s;
+        }
+
+        .envelope-container {
+            position: relative;
+            width: 200px;
+            height: 150px;
+            cursor: pointer;
+        }
+
+        .envelope {
+            width: 100%;
+            height: 100%;
+            background: #ff4f6d;
+            position: absolute;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tampa {
+            width: 100%;
+            height: 80px;
+            background: #d8455a;
+            position: absolute;
+            top: 0;
+            border-radius: 10px 10px 0 0;
+            transform-origin: top;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carta {
+            width: 90%;
+            height: 90%;
+            background: white;
+            position: absolute;
+            top: 10px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #d8455a;
+            padding: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+
+        .envelope-container .coração {
+            font-size: 30px;
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .aberto .tampa {
+            transform: rotateX(180deg);
+        }
+
+        .aberto .carta {
+            opacity: 1;
+            transform: translateY(-10px);
+        }
+    </style>
+</head>
+<body>
+    <div class="envelope-container" onclick="abrirEnvelope()">
+        <div class="tampa"></div>
+        <div class="envelope">
+            <span class="coração">❤️</span>
+        </div>
+        <div class="carta" id="mensagem">Você é incrível!</div>
+    </div>
+
+    <script>
+        const mensagens = [
+            "Seu sorriso ilumina meu dia!",
+            "Estar com você é como um abraço para a alma!",
+            "Você tem um brilho único que encanta a todos!",
+            "Seu jeito de ser é simplesmente maravilhoso!",
+            "Você torna o mundo um lugar melhor só por existir!",
+            "Cada momento ao seu lado é especial!",
+            "Você tem uma luz que aquece o coração de quem te conhece!",
+            "Que a felicidade acomanhe seu caminho",
+            "Que você conquiste tudo o que procura",
+            "Que seu dia seja maravilhoso",
+            "Vai dar tudo certo, apenas confie em Deus",
+            "Você tem uma energia contagiante!",
+            "Seu jeito de ser é a definição de encanto!",
+            "A forma como você vê o mundo é linda!",
+            "Você tem um coração gigante e cheio de amor!",
+            "Estar com você é sempre um momento feliz!",
+            "Seu riso é a melhor melodia!",
+            "Você faz a diferença na vida de muitas pessoas!",
+            "O mundo precisa de mais pessoas como você!",
+            "Você é simplesmente incrível!"
+        ];
+
+        let mensagemAtual = 0;
+
+        function abrirEnvelope() {
+            const envelopeContainer = document.querySelector('.envelope-container');
+            const mensagemElement = document.getElementById('mensagem');
+
+            envelopeContainer.classList.toggle('aberto');
+
+            if (envelopeContainer.classList.contains('aberto')) {
+                mensagemAtual = (mensagemAtual + 1) % mensagens.length;
+                mensagemElement.textContent = mensagens[mensagemAtual];
+            }
+        }
+    </script>
+</body>
+</html>
